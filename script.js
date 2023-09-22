@@ -47,4 +47,5 @@ let operate = ([...arg]) => { //Spread the arguments into individual elements
 
 }
 
-console.log(operate("3*5"))
+//Test
+//console.log(operate("3*5"))
