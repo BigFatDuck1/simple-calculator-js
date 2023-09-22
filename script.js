@@ -19,4 +19,32 @@ let divide = (a,b) => {
     return a / b;
 }
 
-console.log(divide(5,2));
+//Function that takes 2 numbers and an operator
+let operate = ([...arg]) => { //Spread the arguments into individual elements
+
+    let a = parseInt(arg[0]);
+    let operator = arg[1];
+    let b = parseInt(arg[2]);
+    //console.log(arg);
+    let result = 0;
+
+    switch (operator) {
+        case "+":
+            result = add(a,b);
+            break;
+        case "-":
+            result = subtract(a,b);
+            break;
+        case "*":
+            result = multiply(a,b);
+            break;
+        case "/":
+            result = divide(a,b);
+            break;
+    }
+
+    return result;
+
+}
+
+console.log(operate("3*5"))
