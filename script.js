@@ -49,3 +49,33 @@ let operate = ([...arg]) => { //Spread the arguments into individual elements
 
 //Test
 //console.log(operate("3*5"))
+
+//On start, set display text to = 0
+let switchOn = () => {
+    document.querySelector(".display_text").textContent = 0;
+}
+switchOn();
+
+//Set display to equal whatever button is pressed
+let buttonPressed = () => {
+
+    let all_buttons = document.querySelectorAll(".num");
+    //Attach eventListener to each and every button
+    all_buttons.forEach((element) => {        
+        element.addEventListener("click", function() {
+            //console.log(this.id);
+            let digit_pressed = this.id;
+            let display_text = document.querySelector(".display_text").textContent;
+
+            if (display_text == 0) {
+                document.querySelector(".display_text").textContent = digit_pressed;
+            }
+            else {
+                document.querySelector(".display_text").textContent += digit_pressed;
+            }
+
+        });
+    })
+
+}
+buttonPressed();
