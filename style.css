@@ -1,6 +1,44 @@
-
 body {
+    display: flex;
+    justify-content: center;
+}
+
+.calc_container {
+    width: 375px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-color: rgb(63, 63, 63);
+    border: outset; /* temporary */
+}
+
+.display {
+    display: flex;
+    align-self: flex-end;
+}
+
+.display_text {
+    font-size: 20px;
+    padding: 20px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.button {
+    margin: 3px;
+}
+
+.operator {
+    color: orange;
+}
+
+#AC {
+    grid-column-start: 3;
+}
+
+#equal {
+    grid-column-start: 4;
 }
