@@ -22,10 +22,7 @@ let divide = (a,b) => {
     return a / b;
 }
 
-//Function that stores display value into display_value variable
-let storeDisplay = () => {
-    display_value = document.querySelector(".display_text");
-}
+
 
 //Function that takes 2 numbers and an operator
 let operate = ([...arg]) => { //Spread the arguments into individual elements
@@ -64,6 +61,11 @@ let switchOn = () => {
 }
 switchOn();
 
+//Function that stores display value into display_value variable
+let storeDisplay = () => {
+    display_value = document.querySelector(".display_text").textContent;
+}
+
 //Set display to equal whatever button is pressed
 let buttonPressed = () => {
 
@@ -72,6 +74,10 @@ let buttonPressed = () => {
     all_buttons.forEach((element) => {        
         element.addEventListener("click", function() {
             //console.log(this.id);
+            if (this.id == "decimal") {
+                console.log(this.id);
+                this.id = ".";
+            } 
             let digit_pressed = this.id;
             let display_text = document.querySelector(".display_text").textContent;
 
@@ -89,3 +95,46 @@ let buttonPressed = () => {
 
 }
 buttonPressed();
+
+//Operation 
+let number_string = ""; //This is a string that will be fed into the operate() function
+
+let doOperation = () => {
+
+    //Add EventListener for all operator buttons
+    let all_operators = document.querySelectorAll(".operator");
+    let operation_pressed;
+    all_operators.forEach((element) => {
+        element.addEventListener(("click"), function() {
+            //1. Store the displayed number into the number_string
+            number_string += display_value;
+            //1.2 Clear display value so it can store the next set of numbers
+            //May consider adding a small indicator icon
+            document.querySelector(".display_text").textContent = 0;
+            display_value = "";
+            //2. Append the operator into the string
+            switch (this.id) {
+                case ("add"):
+                    number_string += "+";
+                    break;
+                case ("subtract"):
+                    number_string += "-";
+                    break;
+                case ("multiply"):
+                    number_string += "*";
+                    break;
+                case ("divide"):
+                    number_string += "/";
+                    break;
+                //If user pressed equal, complete the appending the string
+                case ("equal"):
+                    number_string += display_value;
+                    break;    
+            }
+            
+            console.log(number_string);
+        })
+    })
+
+}
+doOperation();
