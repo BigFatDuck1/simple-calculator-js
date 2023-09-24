@@ -1,4 +1,7 @@
 
+//Variable that stores display value
+let display_value = 0;
+
 //Create functions for add, subtract, multiply, divide
 let add = (a,b) => {
     return a + b;
@@ -17,6 +20,11 @@ let divide = (a,b) => {
         return "error";
     }
     return a / b;
+}
+
+//Function that stores display value into display_value variable
+let storeDisplay = () => {
+    display_value = document.querySelector(".display_text");
 }
 
 //Function that takes 2 numbers and an operator
@@ -69,9 +77,11 @@ let buttonPressed = () => {
 
             if (display_text == 0) {
                 document.querySelector(".display_text").textContent = digit_pressed;
+                storeDisplay();
             }
             else {
                 document.querySelector(".display_text").textContent += digit_pressed;
+                storeDisplay();
             }
 
         });
