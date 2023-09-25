@@ -32,7 +32,7 @@ let operate = ([...arg]) => { //Spread the arguments into individual elements
     let a = parseInt(arg[0]);
     let operator = arg[1];
     let b = parseInt(arg[2]);
-    //console.log(arg);
+    
     let result = 0;
 
     switch (operator) {
@@ -54,9 +54,6 @@ let operate = ([...arg]) => { //Spread the arguments into individual elements
 
 }
 
-//Test
-//console.log(operate("3*5"))
-
 //On start, set display text to = 0
 let switchOn = () => {
     document.querySelector(".display_text").textContent = 0;
@@ -72,25 +69,32 @@ let storeDisplay = () => {
 let buttonPressed = () => {
 
     let all_buttons = document.querySelectorAll(".num");
-    //Attach eventListener to each and every button
+    //Attach eventListener to each and every number button
     all_buttons.forEach((element) => {        
         element.addEventListener("click", function() {
-            //console.log(this.id);
+            //Convert decimal button to output "." instead of "decimal"
             if (this.id == "decimal") {
-                console.log(this.id);
                 this.id = ".";
             } 
+            //Stores the number that was pressed into a variable
             let digit_pressed = this.id;
+            //The only purpose of this line is to make sure the 0 goes away when you press on any number
+            //instead of being concatenated onto the display (i.e. instead of 023 it becomes 0->23)
             let display_text = document.querySelector(".display_text").textContent;
-
             if (display_text == 0) {
                 document.querySelector(".display_text").textContent = digit_pressed;
+                //storeDisplay() stores what is on the display into var display_value 
                 storeDisplay();
             }
             else {
                 document.querySelector(".display_text").textContent += digit_pressed;
                 storeDisplay();
             }
+            //Concatenate the button pressed (this.id), NOT the display_value, otherwise
+            //it would give duplicate numbers e.g. 56 becomes 556
+            number_string += this.id;
+            console.log(number_string);
+            console.log(number_string.split(/[+-/*/]/));
 
         });
     })
@@ -107,12 +111,11 @@ let doOperation = () => {
     let all_operators = document.querySelectorAll(".operator");
     all_operators.forEach((element) => {
         element.addEventListener(("click"), function() {
-            //1. Store the displayed number into the number_string
-            number_string += display_value;
-            //1.2 Clear display value so it can store the next set of numbers
+            
+            //1. Clear display value so it can store the next set of numbers
             //May consider adding a small indicator icon
             document.querySelector(".display_text").textContent = 0;
-            display_value = "";
+            display_value = 0; //0 instead of "" because it stores intergers/floats, not strings (unlike number_string)
             //2. Append the operator into the string
             switch (this.id) {
                 case ("add"):
@@ -131,12 +134,10 @@ let doOperation = () => {
                 case ("equal"):
                     number_string += display_value;
                     number_string = operate(number_string);
-                    console.log(number_string);
                     //TODO: return here to display value and not run operate? 
                     break;    
             }
             
-            console.log("number_string: " + number_string);
         })
     })
 
