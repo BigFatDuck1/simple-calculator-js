@@ -1,6 +1,13 @@
 //number_string stores all user inputs into a string for future operations
 let number_string = "";
 
+//Some arrays for comparison purposes
+let operators_array = ["+", "-", "*", "/"];
+let arabic_number_array = [];
+for (i = 0; i < 10; i++) {
+    arabic_number_array.push(i.toString());
+}
+
 //Variable that stores display value
 let display_value = 0;
 
@@ -30,7 +37,25 @@ let divide = (a,b) => {
 let operate = ([...arg]) => { //Spread the arguments into individual elements
     //The string passed into operate is all split up, so "100+50" becomes ["1", "0"...]
     //Fix the string so it merges a single number into a three-digit number instead of three separate elements
-    //TODO
+    let temp_arg = [];
+    let temp_concat_number = "";
+    let temp_counter = 0;
+    arg.forEach((element) => {
+        temp_counter += 1; //First element, Second element, nth element...
+        if (arabic_number_array.includes(element)) {
+            temp_concat_number += element;
+            if (temp_counter == arg.length) { //If last element, push into array as there are no more symobls left
+                temp_arg.push(temp_concat_number);
+                console.log("last")
+            }
+        }
+        else if (operators_array.includes(element)) {
+            temp_arg.push(temp_concat_number);
+            temp_concat_number = ""; //Reset so it can store next number
+            temp_arg.push(element); //Now push the symbol into the array
+        }
+    })
+    arg = temp_arg; //Overwrite original arguments passed to operate()
 
     let a = parseInt(arg[0]);
     let operator = arg[1];
@@ -150,13 +175,7 @@ let doOperation = () => {
                     break;
                 case ("divide"):
                     number_string += "/";
-                    break;
-                //If user pressed equal, complete the appending the string
-                case ("equal"):
-                    number_string += display_value;
-                    number_string = operate(number_string);
-                    //TODO: return here to display value and not run operate? 
-                    break;    
+                    break;   
             }
             
         })
