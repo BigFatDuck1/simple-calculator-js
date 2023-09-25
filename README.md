@@ -15,4 +15,6 @@ Made with HTML, CSS and Javascript
 
 6. The function `doOperation()` contains the switch statement in step 6. This function adds EventListeners to each operator button, and begins by clearing the display by setting its value (`textContent`) to `0` whenever an operator button is pressed. It also resets `display_value` to `0`.
 
-7. 
+7. I wanted to check whether `number_string` contains only 2 numbers and 1 operator (e.g. `"2+6"`) so I can call `operate()`. I used regex to split number_string with the separator being any character in `/[+-/*/]/` meaning any symbols e.g. +,-,*,/. If the resultant array after splitting contains only 2 numbers i.e. `[2,6]`, then `operate()` can be called. 
+
+8. 

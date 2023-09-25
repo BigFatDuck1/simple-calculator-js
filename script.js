@@ -28,6 +28,9 @@ let divide = (a,b) => {
 
 //Function that takes 2 numbers and an operator
 let operate = ([...arg]) => { //Spread the arguments into individual elements
+    //The string passed into operate is all split up, so "100+50" becomes ["1", "0"...]
+    //Fix the string so it merges a single number into a three-digit number instead of three separate elements
+    //TODO
 
     let a = parseInt(arg[0]);
     let operator = arg[1];
@@ -53,6 +56,8 @@ let operate = ([...arg]) => { //Spread the arguments into individual elements
     return result;
 
 }
+
+console.log(operate("10*10")) //! operate() doesn't work on multi-digit numbers
 
 //On start, set display text to = 0
 let switchOn = () => {
@@ -102,6 +107,17 @@ let buttonPressed = () => {
 }
 buttonPressed();
 
+//Call this function to 
+//1. Check if there is only 2 numbers and 1 operator sandwiched in between
+//If yes, then operate() can be called as it takes ("a+b") and checks what operator in between
+//2. Therefore, call operator() if the arguments fit the pattern accepted by operate()
+let checkAndCallOperate = () => {
+    let split_number_string = number_string.split(/[+-/*/]/);
+    if (split_number_string.length == 2) {
+        number_string = operate(number_string);
+    }
+} 
+
 //Operation 
 number_string = ""; //This is a string that will be fed into the operate() function
 
@@ -111,6 +127,11 @@ let doOperation = () => {
     let all_operators = document.querySelectorAll(".operator");
     all_operators.forEach((element) => {
         element.addEventListener(("click"), function() {
+
+            //0. Whenever any operator button is pressed, check if the previous presses resulted in a string
+            //that you can call operate() on 
+            checkAndCallOperate();
+            console.log(number_string);
             
             //1. Clear display value so it can store the next set of numbers
             //May consider adding a small indicator icon
