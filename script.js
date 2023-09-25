@@ -1,3 +1,5 @@
+//number_string stores all user inputs into a string for future operations
+let number_string = "";
 
 //Variable that stores display value
 let display_value = 0;
@@ -97,13 +99,12 @@ let buttonPressed = () => {
 buttonPressed();
 
 //Operation 
-let number_string = ""; //This is a string that will be fed into the operate() function
+number_string = ""; //This is a string that will be fed into the operate() function
 
 let doOperation = () => {
 
     //Add EventListener for all operator buttons
     let all_operators = document.querySelectorAll(".operator");
-    let operation_pressed;
     all_operators.forEach((element) => {
         element.addEventListener(("click"), function() {
             //1. Store the displayed number into the number_string
@@ -129,10 +130,13 @@ let doOperation = () => {
                 //If user pressed equal, complete the appending the string
                 case ("equal"):
                     number_string += display_value;
+                    number_string = operate(number_string);
+                    console.log(number_string);
+                    //TODO: return here to display value and not run operate? 
                     break;    
             }
             
-            console.log(number_string);
+            console.log("number_string: " + number_string);
         })
     })
 
