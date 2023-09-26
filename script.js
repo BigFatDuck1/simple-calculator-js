@@ -46,7 +46,6 @@ let operate = ([...arg]) => { //Spread the arguments into individual elements
             temp_concat_number += element;
             if (temp_counter == arg.length) { //If last element, push into array as there are no more symobls left
                 temp_arg.push(temp_concat_number);
-                console.log("last")
             }
         }
         else if (operators_array.includes(element)) {
@@ -81,8 +80,6 @@ let operate = ([...arg]) => { //Spread the arguments into individual elements
     return result;
 
 }
-
-console.log(operate("10*10")) //! operate() doesn't work on multi-digit numbers
 
 //On start, set display text to = 0
 let switchOn = () => {
