@@ -92,6 +92,11 @@ let storeDisplay = () => {
     display_value = document.querySelector(".display_text").textContent;
 }
 
+//show_answer is a "switch" - if the currently displayed value is the result of an operation,
+//then overwrite instead of concatenate e.g. 5 + 6 when press + again displays 11, if the next key pressed
+//is 5, instead of showing 115 show just 5
+let show_answer = 0; //not showing an answer
+
 //Set display to equal whatever button is pressed
 let buttonPressed = () => {
 
@@ -113,9 +118,14 @@ let buttonPressed = () => {
                 //storeDisplay() stores what is on the display into var display_value 
                 storeDisplay();
             }
-            else {
+            else if (show_answer == 0) {
                 document.querySelector(".display_text").textContent += digit_pressed;
                 storeDisplay();
+            }
+            else if (show_answer == 1) {
+                document.querySelector(".display_text").textContent = digit_pressed;
+                storeDisplay();
+                show_answer = 0; //Reset the switch, because the next button press should be concatenated
             }
             //Concatenate the button pressed (this.id), NOT the display_value, otherwise
             //it would give duplicate numbers e.g. 56 becomes 556
@@ -150,16 +160,14 @@ let doOperation = () => {
     all_operators.forEach((element) => {
         element.addEventListener(("click"), function() {
 
-            //0. Whenever any operator button is pressed, check if the previous presses resulted in a string
+            //1. Whenever any operator button is pressed, check if the previous presses resulted in a string
             //that you can call operate() on 
             checkAndCallOperate();
-            console.log(number_string);
-            
-            //1. Clear display value so it can store the next set of numbers
-            //May consider adding a small indicator icon
-            document.querySelector(".display_text").textContent = 0;
-            display_value = 0; //0 instead of "" because it stores intergers/floats, not strings (unlike number_string)
-            //2. Append the operator into the string
+            console.log(number_string, " is number_string");
+            //2. Set display to equal answer after pressing another operator
+            display_value = document.querySelector(".display_text").textContent = number_string.toString();
+            show_answer = 1; //This is an answer that is being shown, not something the user inputted
+            //3. Append the operator into the string
             switch (this.id) {
                 case ("add"):
                     number_string += "+";
