@@ -31,6 +31,10 @@ let divide = (a,b) => {
     if (b == 0) {
         return "Error";
     }
+    if (a % b != 0) { //If not completely divisible i.e. returns a remainder, round the number 
+        let answer = a / b;
+        return answer.toFixed(10);
+    }
     return a / b;
 }
 
