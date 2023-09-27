@@ -220,3 +220,37 @@ let pressEqualButton = ()  => {
     })
 }
 pressEqualButton();
+
+//C button deletes one digit from 
+//1. display (querySelector(".display_text"), 2. display_value and 3. number_string
+let del = () =>  {
+    let lastDigitCut = (str) => str.toString().slice(0,-1);
+    
+    document.querySelector("#del").addEventListener(("click"), () => {
+        
+        if (operators_array.includes(number_string.slice(-1))) {
+            number_string = lastDigitCut(number_string); //Don't delete the numbers, only delete operator
+            show_answer = 0;
+            return "Cleared operator only"
+        }
+        number_string = lastDigitCut(number_string);
+        document.querySelector(".display_text").textContent = lastDigitCut(document.querySelector(".display_text").textContent); 
+        display_value = lastDigitCut(display_value);
+
+        //Check if it is equal to empty string, if yes reset display to "0"
+        if (display_value == "") {
+            display_value = 0;
+        }
+        if (document.querySelector(".display_text").textContent == "") {
+            document.querySelector(".display_text").textContent = "0";
+            //Don't change number_string as it contains previous numbers/inputs
+        }
+
+        console.log(`
+        display_value: ${display_value}
+        number_string: ${number_string}`)
+
+    })
+    
+}
+del();

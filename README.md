@@ -51,4 +51,6 @@ should show `7` instead of `0`. This is accomplished by firstly changing the `do
 
 11. Dealing with decimal point numbers involved changing two parts. 1st was the `operate()` function. Because initially the arguments passed to the function were changed to intergers i.e. `let a = parseInt(arg[0])`, anything after the decimal point was chopped off, so a calculation like `3.6/2` returned `1.5`. This was fixed by simply changing `parseInt()` to `parseFloat()`. The 2nd part was using regex to separate a string like `"3+6.2-5"`. While it worked if the string contained no decimal points, for some reason regex also split the decimal point, turning the aforementioned string into the array `[3, 6, 2, 5]`. Therefore, I coped the approach from step 8, storing and concatenating numbers in a temporary variable until the iterator function met an operator symbol or reached the end of the array. 
 
-12. 
+12. Del (delete) button uses the string function `slice()` to delete the last number of the string - this inclue what is on the display and the variables `display_value` and `number_string`. Delete button also handles operators - if the user input `3`, `6`, `+` and then `del`, then the input goes back to `3`, `6` and the user can input any other operator he wants, effectively undoing the previous `+` he entered. This is accomplished by setting `show_answer` to `0`, as any time an operator is pressed, it is tripped to `show_answer = 1`, and the next number the user inputs replaces whatever is on the screen.
+
+13. AC
