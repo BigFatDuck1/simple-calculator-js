@@ -6,6 +6,7 @@ let operators_array = ["+", "-", "*", "/"];
 let arabic_number_array = [];
 for (i = 0; i < 10; i++) {
     arabic_number_array.push(i.toString());
+    arabic_number_array.push(".")
 }
 
 //Variable that stores display value
@@ -54,11 +55,12 @@ let operate = ([...arg]) => { //Spread the arguments into individual elements
             temp_arg.push(element); //Now push the symbol into the array
         }
     })
+    console.log(temp_arg);
     arg = temp_arg; //Overwrite original arguments passed to operate()
 
-    let a = parseInt(arg[0]);
+    let a = parseFloat(arg[0]);
     let operator = arg[1];
-    let b = parseInt(arg[2]);
+    let b = parseFloat(arg[2]);
     
     let result = 0;
 
