@@ -27,7 +27,7 @@ let multiply = (a,b) => {
 
 let divide = (a,b) => {
     if (b == 0) {
-        return "error";
+        return "Error";
     }
     return a / b;
 }
@@ -179,7 +179,14 @@ let doOperation = () => {
     //Add EventListener for all operator buttons
     let all_operators = document.querySelectorAll(".operator");
     all_operators.forEach((element) => {
+
         element.addEventListener(("click"), function() {
+
+            //If the user has already inputted an operator, don't concatenate or overwrite the pre-existing operator
+            //Stop all subsequent user inputs unless the user presses Del button
+            if (operators_array.includes(number_string.slice(-1))) {
+                return "Pre-existing operation not overwritten"
+            }
 
             //1. Whenever any operator button is pressed, check if the previous presses resulted in a string
             //that you can call operate() on 
