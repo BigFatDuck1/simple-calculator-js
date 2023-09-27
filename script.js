@@ -133,7 +133,6 @@ let buttonPressed = () => {
             //it would give duplicate numbers e.g. 56 becomes 556
             number_string += this.id;
             console.log(number_string);
-            console.log(number_string.split(/[+-/*/]/));
 
         });
     })
@@ -146,7 +145,27 @@ buttonPressed();
 //If yes, then operate() can be called as it takes ("a+b") and checks what operator in between
 //2. Therefore, call operator() if the arguments fit the pattern accepted by operate()
 let checkAndCallOperate = () => {
-    let split_number_string = number_string.toString().split(/[+-/*/]/);
+    let temp_num_str = "";
+    let split_number_string = [];
+    //split_number_string contains number_string stripped of all its operators
+    //Old version uses regex, but cannot handle decimal points
+    //let split_number_string = number_string.toString().split(/[+-/*/]/);
+    let length_of_number_string = number_string.toString().split("").length;
+    let x = 0;
+    number_string.toString().split("").forEach((element) => {
+        x += 1; //This is the nth item in number_string
+        if (operators_array.includes(element)) {
+            split_number_string.push(temp_num_str);
+            temp_num_str = ""; //Reset for next number
+        }
+        else {
+            temp_num_str += element;
+            if (x == length_of_number_string) {
+                split_number_string.push(temp_num_str);
+            }
+        }
+    });
+    console.log(split_number_string)
     if (split_number_string.length == 2) {
         number_string = operate(number_string);
     }

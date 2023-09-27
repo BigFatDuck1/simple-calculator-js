@@ -19,7 +19,8 @@ Made with HTML, CSS and Javascript
 
 8. Problem: `operate()` can only process single digit calculations. That's because `[...arg]` splits the entire string into each and every one of its digit. Therefore, `10*10` becomes `["1", "0", "*", "1", "0"]` which breaks the function because `operate()` now parses only the first three elements of the array - which means it will try to look for the operator, which is now `0` and the two numbers, which are `1` and `*`. No calculation can be done as there is no operator found that matches any case in the switch statement, and the `results` variable still remains `= 0`.
 I fixed it as follows:
-```js //The string passed into operate is all split up, so "100+50" becomes ["1", "0"...]
+```js 
+    //The string passed into operate is all split up, so "100+50" becomes ["1", "0"...]
     //Fix the string so it merges a single number into a three-digit number instead of three separate elements
     let temp_arg = [];
     let temp_concat_number = "";
@@ -46,4 +47,8 @@ If the iterable is a number, simply concatenate it into a temporary variable (`t
 9. I wanted the display to display the answer (sum/product/quotient) after pressing the next operator key e.g. when `1 + 6` is pressed, nothing happens - but if the next key inputted is a `+`, the display
 should show `7` instead of `0`. This is accomplished by firstly changing the `document.querySelector(".display_text")` to `number_string` instead of `0` (see code in previous commits). However, there is a bug: on the next digit pressed, it is concatenated instead of replacing the displayed answer. I solved this by adding a `show_answer` variable to mark whether what's displayed on the screen is a. something the user typed, in which the next digit should be concatenated or b. something calculated and displayed by the calculator, in which case the next digit pressed should entirely replace the entire displayed answer.  
 
-10. Equal button simply completes calculating `number_string` sets the display to whatever is the result. However, there is no error handling yet - typing `3++` or `3+=` results in `NaN`. 
+10. Equal button simply completes calculating `number_string` sets the display to whatever is the result. However, there is no error handling yet - typing `3++` or `3+=` results in `NaN`.
+
+11. Dealing with decimal point numbers involved changing two parts. 1st was the `operate()` function. Because initially the arguments passed to the function were changed to intergers i.e. `let a = parseInt(arg[0])`, anything after the decimal point was chopped off, so a calculation like `3.6/2` returned `1.5`. This was fixed by simply changing `parseInt()` to `parseFloat()`. The 2nd part was using regex to separate a string like `"3+6.2-5"`. While it worked if the string contained no decimal points, for some reason regex also split the decimal point, turning the aforementioned string into the array `[3, 6, 2, 5]`. Therefore, I coped the approach from step 8, storing and concatenating numbers in a temporary variable until the iterator function met an operator symbol or reached the end of the array. 
+
+12. 
