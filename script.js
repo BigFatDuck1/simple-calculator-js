@@ -144,10 +144,11 @@ buttonPressed();
 //If yes, then operate() can be called as it takes ("a+b") and checks what operator in between
 //2. Therefore, call operator() if the arguments fit the pattern accepted by operate()
 let checkAndCallOperate = () => {
-    let split_number_string = number_string.split(/[+-/*/]/);
+    let split_number_string = number_string.toString().split(/[+-/*/]/);
     if (split_number_string.length == 2) {
         number_string = operate(number_string);
     }
+    return number_string;
 } 
 
 //Operation 
@@ -163,7 +164,7 @@ let doOperation = () => {
             //1. Whenever any operator button is pressed, check if the previous presses resulted in a string
             //that you can call operate() on 
             checkAndCallOperate();
-            console.log(number_string, " is number_string");
+            console.log(number_string.toString(), " is number_string");
             //2. Set display to equal answer after pressing another operator
             display_value = document.querySelector(".display_text").textContent = number_string.toString();
             show_answer = 1; //This is an answer that is being shown, not something the user inputted
@@ -188,3 +189,13 @@ let doOperation = () => {
 
 }
 doOperation();
+
+//Equal button
+let pressEqualButton = ()  => {
+    document.querySelector(".equal").addEventListener("click", () => {
+        console.log("Equal button")
+        document.querySelector(".display_text").textContent = checkAndCallOperate();
+        //Todo:  Add error handling
+    })
+}
+pressEqualButton();

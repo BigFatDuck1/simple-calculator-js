@@ -45,3 +45,5 @@ If the iterable is a number, simply concatenate it into a temporary variable (`t
 
 9. I wanted the display to display the answer (sum/product/quotient) after pressing the next operator key e.g. when `1 + 6` is pressed, nothing happens - but if the next key inputted is a `+`, the display
 should show `7` instead of `0`. This is accomplished by firstly changing the `document.querySelector(".display_text")` to `number_string` instead of `0` (see code in previous commits). However, there is a bug: on the next digit pressed, it is concatenated instead of replacing the displayed answer. I solved this by adding a `show_answer` variable to mark whether what's displayed on the screen is a. something the user typed, in which the next digit should be concatenated or b. something calculated and displayed by the calculator, in which case the next digit pressed should entirely replace the entire displayed answer.  
+
+10. Equal button simply completes calculating `number_string` sets the display to whatever is the result. However, there is no error handling yet - typing `3++` or `3+=` results in `NaN`. 
