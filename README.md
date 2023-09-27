@@ -53,4 +53,4 @@ should show `7` instead of `0`. This is accomplished by firstly changing the `do
 
 12. Del (delete) button uses the string function `slice()` to delete the last number of the string - this inclue what is on the display and the variables `display_value` and `number_string`. Delete button also handles operators - if the user input `3`, `6`, `+` and then `del`, then the input goes back to `3`, `6` and the user can input any other operator he wants, effectively undoing the previous `+` he entered. This is accomplished by setting `show_answer` to `0`, as any time an operator is pressed, it is tripped to `show_answer = 1`, and the next number the user inputs replaces whatever is on the screen.
 
-13. AC
+13. AC button simply sets everything to either `""`, `"0"`, or `0`. See `AC()` for details.

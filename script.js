@@ -132,7 +132,6 @@ let buttonPressed = () => {
             //Concatenate the button pressed (this.id), NOT the display_value, otherwise
             //it would give duplicate numbers e.g. 56 becomes 556
             number_string += this.id;
-            console.log(number_string);
 
         });
     })
@@ -254,3 +253,18 @@ let del = () =>  {
     
 }
 del();
+
+//AC button
+let AC = () => {
+    let clearEverything = (str) => "";
+
+    document.querySelector("#AC").addEventListener("click", () => {
+        
+        display_value = 0; 
+
+        number_string = clearEverything(number_string);
+        document.querySelector(".display_text").textContent = "0"
+
+    })
+}
+AC();
