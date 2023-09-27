@@ -267,13 +267,20 @@ pressEqualButton();
 //C button deletes one digit from 
 //1. display (querySelector(".display_text"), 2. display_value and 3. number_string
 let del = () =>  {
+
     let lastDigitCut = (str) => str.toString().slice(0,-1);
     
     document.querySelector("#del").addEventListener(("click"), () => {
+
+        //Don't allow delete button if it is after user pressed equal
+        if (after_pressed_equal == 1) {
+            return "User pressed equal previously, don't allow delete";
+        }
         
         if (operators_array.includes(number_string.slice(-1))) {
             number_string = lastDigitCut(number_string); //Don't delete the numbers, only delete operator
             show_answer = 0;
+            document.querySelector(".input_log").textContent = document.querySelector(".input_log").textContent.slice(0,-1); 
             return "Cleared operator only"
         }
         number_string = lastDigitCut(number_string);
