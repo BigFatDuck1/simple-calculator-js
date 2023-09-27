@@ -206,7 +206,6 @@ let doOperation = () => {
             //1. Whenever any operator button is pressed, check if the previous presses resulted in a string
             //that you can call operate() on 
             checkAndCallOperate();
-            console.log(number_string.toString(), " is number_string");
             //2. Set display to equal answer after pressing another operator
             display_value = document.querySelector(".display_text").textContent = number_string.toString();
             show_answer = 1; //This is an answer that is being shown, not something the user inputted
@@ -239,10 +238,15 @@ doOperation();
 //Equal button
 let pressEqualButton = ()  => {
     document.querySelector(".equal").addEventListener("click", () => {
+        //Todo:  Add error handling
+        //1. Don't respond if the previous input was an operator symbol
+        if (operators_array.includes(number_string.slice(-1))) {
+            return "Block equal button as previous input was operator";
+        }
         console.log("Equal button")
         document.querySelector(".display_text").textContent = checkAndCallOperate();
         logClear(); //Clear input log that is above the answer display 
-        //Todo:  Add error handling
+
     })
 }
 pressEqualButton();
