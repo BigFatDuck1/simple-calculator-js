@@ -14,12 +14,19 @@ body {
 
 .display {
     display: flex;
+    flex-direction: column;
     align-self: flex-end;
+}
+
+.input_log {
+    padding: 5px;
+    font-size: 10px;
 }
 
 .display_text {
     font-size: 20px;
     padding: 20px;
+    padding-top: 5px;
 }
 
 .buttons {

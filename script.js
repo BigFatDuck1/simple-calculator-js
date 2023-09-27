@@ -1,5 +1,7 @@
 //number_string stores all user inputs into a string for future operations
 let number_string = "";
+//Store all user input into a variable
+let input_log = ""; 
 
 //Some arrays for comparison purposes
 let operators_array = ["+", "-", "*", "/"];
@@ -83,9 +85,18 @@ let operate = ([...arg]) => { //Spread the arguments into individual elements
 
 }
 
+//Functions that change the input_log display at the top of the calculator
+let logAppend = (str) => {
+    document.querySelector(".input_log").textContent += str;
+}
+let logClear = () => {
+    document.querySelector(".input_log").textContent = "";
+}
+
 //On start, set display text to = 0
 let switchOn = () => {
     document.querySelector(".display_text").textContent = 0;
+    logClear();
 }
 switchOn();
 
@@ -132,6 +143,7 @@ let buttonPressed = () => {
             //Concatenate the button pressed (this.id), NOT the display_value, otherwise
             //it would give duplicate numbers e.g. 56 becomes 556
             number_string += this.id;
+            logAppend(this.id);
 
         });
     })
@@ -164,7 +176,10 @@ let checkAndCallOperate = () => {
             }
         }
     });
+
     console.log(split_number_string)
+    //Check if, when stripped of all its operators, whether the string contains two numbers only
+    //If yes, do the calculation
     if (split_number_string.length == 2) {
         number_string = operate(number_string);
     }
@@ -199,15 +214,19 @@ let doOperation = () => {
             switch (this.id) {
                 case ("add"):
                     number_string += "+";
+                    logAppend("+");
                     break;
                 case ("subtract"):
                     number_string += "-";
+                    logAppend("-");
                     break;
                 case ("multiply"):
                     number_string += "*";
+                    logAppend("x");
                     break;
                 case ("divide"):
                     number_string += "/";
+                    logAppend("/");
                     break;   
             }
             
@@ -222,6 +241,7 @@ let pressEqualButton = ()  => {
     document.querySelector(".equal").addEventListener("click", () => {
         console.log("Equal button")
         document.querySelector(".display_text").textContent = checkAndCallOperate();
+        logClear(); //Clear input log that is above the answer display 
         //Todo:  Add error handling
     })
 }
@@ -252,6 +272,8 @@ let del = () =>  {
             //Don't change number_string as it contains previous numbers/inputs
         }
 
+        document.querySelector(".input_log").textContent = document.querySelector(".input_log").textContent.slice(0,-1); 
+
         console.log(`
         display_value: ${display_value}
         number_string: ${number_string}`)
@@ -270,7 +292,8 @@ let AC = () => {
         display_value = 0; 
 
         number_string = clearEverything(number_string);
-        document.querySelector(".display_text").textContent = "0"
+        document.querySelector(".display_text").textContent = "0";
+        logClear();
 
     })
 }
