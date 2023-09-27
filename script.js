@@ -3,6 +3,9 @@ let number_string = "";
 //Store all user input into a variable
 let input_log = ""; 
 
+//Did the user press equal 
+let after_pressed_equal = 0;
+
 //Some arrays for comparison purposes
 let operators_array = ["+", "-", "*", "/"];
 let arabic_number_array = [];
@@ -121,6 +124,12 @@ let buttonPressed = () => {
     //Attach eventListener to each and every number button
     all_buttons.forEach((element) => {        
         element.addEventListener("click", function() {
+            //Clear everything if the previous button press was equal 
+            if (after_pressed_equal == 1) {
+                after_pressed_equal = 0;
+                allClear();
+            }
+
             //Convert decimal button to output "." instead of "decimal"
             if (this.id == "decimal") {
                 this.id = ".";
@@ -242,13 +251,13 @@ doOperation();
 //Equal button
 let pressEqualButton = ()  => {
     document.querySelector(".equal").addEventListener("click", () => {
-        //Todo:  Add error handling
-        //1. Don't respond if the previous input was an operator symbol
+        //Don't respond if the previous input was an operator symbol
         if (operators_array.includes(number_string.slice(-1))) {
             return "Block equal button as previous input was operator";
         }
         document.querySelector(".display_text").textContent = checkAndCallOperate();
-        //logClear(); //Clear input log that is above the answer display 
+        
+        after_pressed_equal = 1; //Set this state so if the next button press is a number button, call AC() to clear everything
 
     })
 }
@@ -292,16 +301,16 @@ let del = () =>  {
 del();
 
 //AC button
+let allClear = () => {
+    display_value = 0; 
+    number_string = "";
+    document.querySelector(".display_text").textContent = "0";
+    logClear();
+}
 let AC = () => {
-    let clearEverything = (str) => "";
-
     document.querySelector("#AC").addEventListener("click", () => {
         
-        display_value = 0; 
-
-        number_string = clearEverything(number_string);
-        document.querySelector(".display_text").textContent = "0";
-        logClear();
+        allClear();
 
     })
 }
