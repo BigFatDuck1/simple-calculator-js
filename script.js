@@ -195,6 +195,7 @@ let checkAndCallOperate = () => {
     //If yes, do the calculation
     if (split_number_string.length == 2) {
         number_string = operate(number_string);
+        number_string = number_string.toString();
     }
     return number_string.toString();
 } 
