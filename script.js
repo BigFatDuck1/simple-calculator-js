@@ -187,7 +187,7 @@ let checkAndCallOperate = () => {
     if (split_number_string.length == 2) {
         number_string = operate(number_string);
     }
-    return number_string;
+    return number_string.toString();
 } 
 
 //Operation 
@@ -247,9 +247,8 @@ let pressEqualButton = ()  => {
         if (operators_array.includes(number_string.slice(-1))) {
             return "Block equal button as previous input was operator";
         }
-        console.log("Equal button")
         document.querySelector(".display_text").textContent = checkAndCallOperate();
-        logClear(); //Clear input log that is above the answer display 
+        //logClear(); //Clear input log that is above the answer display 
 
     })
 }
@@ -280,6 +279,7 @@ let del = () =>  {
             //Don't change number_string as it contains previous numbers/inputs
         }
 
+        //Deletes last character from input log
         document.querySelector(".input_log").textContent = document.querySelector(".input_log").textContent.slice(0,-1); 
 
         console.log(`
