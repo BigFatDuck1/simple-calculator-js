@@ -15,7 +15,7 @@ for (i = 0; i < 10; i++) {
 }
 
 //Variable that stores display value
-let display_value = 0;
+let display_value = "0";
 
 //Create functions for add, subtract, multiply, divide
 let add = (a,b) => {
