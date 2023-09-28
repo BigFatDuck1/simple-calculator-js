@@ -4,6 +4,8 @@ https://bigfatduck1.github.io/simple-calculator-js/
 
 ## My approach
 
+### Implementing the main features
+
 1. I created all the functions for add, subtract, multiply and divide and an operate() function that takes two numbers and an operator and calls the appropriate function that spits out the sum/product/quotient
 
 2. Created the buttons and display on HTML using flexbox and grid
@@ -67,3 +69,7 @@ should show `7` instead of `0`. This is accomplished by firstly changing the `do
     * The user can enter multiple decimal points in one number. This is fixed by checking whether `display_value` already contains a `"."` or not. See `buttonPressed()`.
 
 18. Added support for keyboards. This is accomplished with `document.AddEventListener("keypress", () =>)`. However, `"keypress"` does not capture `Backspace` and `Delete`, so I had to use `"keydown"` instead.
+
+### Memory function
+* In September 1965, CASIO releases the 14-A 001 calculator, the first desktop calculator with a memory function. *
+
