@@ -124,6 +124,14 @@ let buttonPressed = () => {
     //Attach eventListener to each and every number button
     all_buttons.forEach((element) => {        
         element.addEventListener("click", function() {
+            //If there is already a decimal point in the number, exit the function, don't let user enter anything
+            if (this.id == "decimal") {
+                if (display_value.includes(".") == true) {
+                    return "Already has decimal point in number, block input";
+                }
+
+            } 
+
             //Clear everything if the previous button press was equal 
             if (after_pressed_equal == 1) {
                 after_pressed_equal = 0;
@@ -131,11 +139,14 @@ let buttonPressed = () => {
             }
 
             //Convert decimal button to output "." instead of "decimal"
-            if (this.id == "decimal") {
-                this.id = ".";
-            } 
+            // if (this.id == "decimal") {
+            //     this.id = ".";
+            // } 
             //Stores the number that was pressed into a variable
             let digit_pressed = this.id;
+            if (this.id == "decimal") {
+                digit_pressed = ".";
+            }
             //The only purpose of this line is to make sure the 0 goes away when you press on any number
             //instead of being concatenated onto the display (i.e. instead of 023 it becomes 0->23)
             let display_text = document.querySelector(".display_text").textContent;
@@ -155,8 +166,14 @@ let buttonPressed = () => {
             }
             //Concatenate the button pressed (this.id), NOT the display_value, otherwise
             //it would give duplicate numbers e.g. 56 becomes 556
-            number_string += this.id;
-            logAppend(this.id);
+            if (this.id == "decimal") {
+                number_string += ".";
+                logAppend(".");
+            } 
+            else {
+                number_string += this.id;
+                logAppend(this.id);
+            }
 
         });
     })
