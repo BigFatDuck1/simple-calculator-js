@@ -1,5 +1,6 @@
 # Simple Calculator
-Made with HTML, CSS and Javascript 
+Made with HTML, CSS and Javascript
+https://bigfatduck1.github.io/simple-calculator-js/
 
 ## My approach
 
@@ -64,3 +65,5 @@ should show `7` instead of `0`. This is accomplished by firstly changing the `do
 17. Decimal button has three bugs: 
     * The user can press an operator and then press decimal, resulting in a decimal point without any trailing number. While javascript can handle this and assume it to mean .0 e.g. `6. + 6` equals `6.0 + 6`, I have opted to block the user from inputting any operator if his previous input was a decimal point. This is done in the `doOperation()` function, by checking whether `number_string.slice(-1) == "."`.
     * The user can enter multiple decimal points in one number. This is fixed by checking whether `display_value` already contains a `"."` or not. See `buttonPressed()`.
+
+18. Added support for keyboards. This is accomplished with `document.AddEventListener("keypress", () =>)`. However, `"keypress"` does not capture `Backspace` and `Delete`, so I had to use `"keydown"` instead.

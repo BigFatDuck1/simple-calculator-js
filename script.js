@@ -229,11 +229,17 @@ let doOperation = () => {
 
         element.addEventListener(("click"), function() {
 
+            //If number_string is empty, don't let user enter just an operator
+            if (number_string == "") {
+                return "Block input since no number"; //Prevent NaN error
+            }
+
             //If the user has already inputted an operator, don't concatenate or overwrite the pre-existing operator
             //Stop all subsequent user inputs unless the user presses Del button
             if (operators_array.includes(number_string.slice(-1))) {
                 return "Pre-existing operation not overwritten"
             }
+            //Don't let user input an operator if the last input was just a decimal point
             if (number_string.slice(-1) == ".") {
                 return "Block operator input as user hasn't completed decimal number"
             }
@@ -244,6 +250,7 @@ let doOperation = () => {
             //2. Set display to equal answer after pressing another operator
             display_value = document.querySelector(".display_text").textContent = number_string.toString();
             show_answer = 1; //This is an answer that is being shown, not something the user inputted
+            after_pressed_equal = 0; //The user wants to continue operation with the answer, set switch to off
             //3. Append the operator into the string
             switch (this.id) {
                 case ("add"):
@@ -273,6 +280,7 @@ doOperation();
 //Equal button
 let pressEqualButton = ()  => {
     document.querySelector(".equal").addEventListener("click", () => {
+        
         if (number_string == "") { //Pressing equal when number_string is empty won't result in an empty display
             document.querySelector(".display_text").textContent = 0;
             return 0;
@@ -315,7 +323,7 @@ let del = () =>  {
 
         //Check if it is equal to empty string, if yes reset display to "0"
         if (display_value == "") {
-            display_value = 0;
+            display_value = "0";
         }
         if (document.querySelector(".display_text").textContent == "") {
             document.querySelector(".display_text").textContent = "0";
@@ -326,6 +334,7 @@ let del = () =>  {
         document.querySelector(".input_log").textContent = document.querySelector(".input_log").textContent.slice(0,-1); 
 
         console.log(`
+        Delete button pressed.
         display_value: ${display_value}
         number_string: ${number_string}`)
 
@@ -349,3 +358,71 @@ let AC = () => {
     })
 }
 AC();
+
+//Adding keyboard functionality
+let keyPress = () => {
+    document.addEventListener("keypress", (event) => {
+        
+        event.preventDefault();
+
+        let keypress = event.key;
+        switch (event.key) {
+            case "+":
+                keypress = "add";
+                break;
+            case "-":
+                keypress = "subtract";
+                break;
+            case "*":
+                keypress = "multiply";
+                break;
+            case "x":
+                keypress = "multiply";
+                break;
+            case "/":
+                keypress = "divide";
+                break;
+            case ".":
+                keypress = "decimal";
+                break;
+            case "Enter":
+                keypress = "equal";
+                break;
+            case "=":
+                keypress = "equal";
+                break;
+            case "a": 
+                keypress = "AC";
+                break;
+            default:
+                keypress = event.key;
+        }
+
+        if (document.getElementById(keypress) == null) { //Filter irrelevant keypresses
+            //console.log("No such element")
+            //return 404;
+        }
+        else {
+            document.getElementById(keypress).click();
+        }
+
+        //console.log(keypress);
+
+    })
+}
+
+let deleteKey = () => {
+    document.addEventListener("keydown", (event) => {
+
+        if (event.key == "Backspace" || event.key == "Delete") {
+            document.getElementById("del").click();
+        }
+        else {
+            return "Irrelevant keys, return";
+        }
+
+    })
+}
+
+keyPress();
+deleteKey();
