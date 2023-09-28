@@ -124,6 +124,7 @@ let buttonPressed = () => {
     //Attach eventListener to each and every number button
     all_buttons.forEach((element) => {        
         element.addEventListener("click", function() {
+            //*Decimal point bugs
             //If there is already a decimal point in the number, exit the function, don't let user enter anything
             if (this.id == "decimal") {
                 if (display_value.includes(".") == true) {
@@ -232,6 +233,9 @@ let doOperation = () => {
             //Stop all subsequent user inputs unless the user presses Del button
             if (operators_array.includes(number_string.slice(-1))) {
                 return "Pre-existing operation not overwritten"
+            }
+            if (number_string.slice(-1) == ".") {
+                return "Block operator input as user hasn't completed decimal number"
             }
 
             //1. Whenever any operator button is pressed, check if the previous presses resulted in a string
