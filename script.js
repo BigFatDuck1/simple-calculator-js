@@ -252,6 +252,11 @@ doOperation();
 //Equal button
 let pressEqualButton = ()  => {
     document.querySelector(".equal").addEventListener("click", () => {
+        if (number_string == "") { //Pressing equal when number_string is empty won't result in an empty display
+            document.querySelector(".display_text").textContent = 0;
+            return 0;
+        }
+
         //Don't respond if the previous input was an operator symbol
         if (operators_array.includes(number_string.slice(-1))) {
             return "Block equal button as previous input was operator";
