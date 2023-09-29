@@ -70,6 +70,4 @@ should show `7` instead of `0`. This is accomplished by firstly changing the `do
 
 18. Added support for keyboards. This is accomplished with `document.AddEventListener("keypress", () =>)`. However, `"keypress"` does not capture `Backspace` and `Delete`, so I had to use `"keydown"` instead.
 
-### Memory function
-* In September 1965, CASIO releases the 14-A 001 calculator, the first desktop calculator with a memory function. *
 
