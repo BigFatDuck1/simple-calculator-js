@@ -52,7 +52,10 @@ let operate = ([...arg]) => { //Spread the arguments into individual elements
     let temp_counter = 0;
     arg.forEach((element) => {
         temp_counter += 1; //First element, Second element, nth element...
-        if (arabic_number_array.includes(element)) {
+        if (element == "-") {
+            temp_concat_number += element;
+        }
+        else if (arabic_number_array.includes(element)) {
             temp_concat_number += element;
             if (temp_counter == arg.length) { //If last element, push into array as there are no more symobls left
                 temp_arg.push(temp_concat_number);
@@ -196,9 +199,12 @@ let checkAndCallOperate = () => {
     let x = 0;
     number_string.toString().split("").forEach((element) => {
         x += 1; //This is the nth item in number_string
-        if (operators_array.includes(element)) {
+        if (operators_array.includes(element) && x != 1) {
             split_number_string.push(temp_num_str);
             temp_num_str = ""; //Reset for next number
+        }
+        else if (element == 1 && x == 1) { //If this first character is -, append - to the number
+            temp_num_str += "-";
         }
         else {
             temp_num_str += element;
@@ -230,7 +236,7 @@ let doOperation = () => {
         element.addEventListener(("click"), function() {
 
             //If number_string is empty, don't let user enter just an operator
-            if (number_string == "") {
+            if (number_string == "" && this.id != "subtract") { //Allow first character to be negative
                 return "Block input since no number"; //Prevent NaN error
             }
 
