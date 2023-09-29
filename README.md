@@ -70,7 +70,9 @@ should show `7` instead of `0`. This is accomplished by firstly changing the `do
 
 18. Added support for keyboards. This is accomplished with `document.AddEventListener("keypress", () =>)`. However, `"keypress"` does not capture `Backspace` and `Delete`, so I had to use `"keydown"` instead.
 
-19. The first input can be the negative symbol. This is fixed by first telling the operate() function to append "-" to the temporary number variable if the first character is a "-". Then, the checkAndCallOperate() function also appends "-" to the temporary number variable if the first digit is not a number but a negative sign. Therefore, users can now input "-" as the first input instead of just numbers. All other operators are still blocked.
+19. The first input can be the negative symbol. This is fixed by first telling the `operate()` function to append "-" to the temporary number variable if the first character is a "-". Then, the `checkAndCallOperate()` function also appends "-" to the temporary number variable if the first digit is not a number but a negative sign. Therefore, users can now input "-" as the first input instead of just numbers. All other operators are still blocked.
+
+20. C button added. It basically runs the function called by AddEventListener in `del()` until all the digits on the display are deleted. This is done with a for loop that runs for the length of the digits on the display.
 
 ### Memory function
 * In September 1965, CASIO releases the 14-A 001 calculator, the first desktop calculator with a memory function. *

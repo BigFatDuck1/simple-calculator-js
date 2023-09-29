@@ -351,7 +351,7 @@ del();
 
 //AC button
 let allClear = () => {
-    display_value = 0; 
+    display_value = "0"; 
     number_string = "";
     document.querySelector(".display_text").textContent = "0";
     logClear();
@@ -432,3 +432,55 @@ let deleteKey = () => {
 
 keyPress();
 deleteKey();
+
+//Copy and pasted from del()
+let deleteDigit = () => {
+
+    let lastDigitCut = (str) => str.toString().slice(0,-1);
+
+    //Don't allow delete button if it is after user pressed equal
+    if (after_pressed_equal == 1) {
+        return "User pressed equal previously, don't allow delete";
+    }
+    
+    if (operators_array.includes(number_string.slice(-1))) {
+        number_string = lastDigitCut(number_string); //Don't delete the numbers, only delete operator
+        show_answer = 0;
+        document.querySelector(".input_log").textContent = document.querySelector(".input_log").textContent.slice(0,-1); 
+        return "Cleared operator only"
+    }
+
+    number_string = lastDigitCut(number_string);
+    document.querySelector(".display_text").textContent = lastDigitCut(document.querySelector(".display_text").textContent); 
+    display_value = lastDigitCut(display_value);
+
+    //Check if it is equal to empty string, if yes reset display to "0"
+    if (display_value == "") {
+        display_value = "0";
+    }
+    if (document.querySelector(".display_text").textContent == "") {
+        document.querySelector(".display_text").textContent = "0";
+        //Don't change number_string as it contains previous numbers/inputs
+    }
+
+    //Deletes last character from input log
+    document.querySelector(".input_log").textContent = document.querySelector(".input_log").textContent.slice(0,-1); 
+}
+
+//C button: clears entry on the screen but leaves everything else untouched
+let C = () => {
+    
+    document.querySelector("#C").addEventListener("click", () => {
+        
+        let run_del_n_times = display_value.length;
+    
+        if (display_value == 0) {
+            return "Do nothing, because nothing on display"
+        }
+
+        for (let i = 0; i < run_del_n_times; i++) {
+            deleteDigit();
+        }
+    })
+}
+C();

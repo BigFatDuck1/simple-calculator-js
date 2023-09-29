@@ -29,9 +29,10 @@ body {
     padding-top: 5px;
 }
 
+/* Container for all the buttons */
 .buttons {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .button {
