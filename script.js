@@ -215,7 +215,6 @@ let checkAndCallOperate = () => {
         }
     });
 
-    console.log(split_number_string)
     //Check if, when stripped of all its operators, whether the string contains two numbers only
     //If yes, do the calculation
     if (split_number_string.length == 2) {
@@ -486,6 +485,27 @@ let C = () => {
 }
 C();
 
+let cKeypress = () => {
+    document.addEventListener("keypress", (event) => {
+        event.preventDefault();
+        if (event.key == "c") {
+            let run_del_n_times = display_value.length;
+    
+            if (display_value == 0) {
+                return "Do nothing, because nothing on display"
+            }
+
+            for (let i = 0; i < run_del_n_times; i++) {
+                deleteDigit();
+            }
+        }
+        else {
+            return 1;
+        }
+    })
+} 
+cKeypress();
+
 //Memory functions
 let memory = 0;
 
@@ -545,14 +565,17 @@ let inputLogEmptyPadding = () => {
     let input_log_ref = document.querySelector(".input_log");
     document.querySelector(".input_log").classList.add("input_log_empty"); //Add this class to give it that padding
 
-    window.addEventListener("click", () => {
+    let inputLogHeight = () => {
         if (input_log_ref.textContent == "") {
             document.querySelector(".input_log").classList.add("input_log_empty");
         }
         else {
             document.querySelector(".input_log").classList.remove("input_log_empty");
         }
-    })
+    }
+
+    window.addEventListener("click", inputLogHeight);
+    window.addEventListener("keypress", inputLogHeight);
 }
 inputLogEmptyPadding();
 
