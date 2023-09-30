@@ -52,7 +52,7 @@ let operate = ([...arg]) => { //Spread the arguments into individual elements
     let temp_counter = 0;
     arg.forEach((element) => {
         temp_counter += 1; //First element, Second element, nth element...
-        if (element == "-") {
+        if (element == "-" && temp_counter == 1) {
             temp_concat_number += element;
         }
         else if (arabic_number_array.includes(element)) {
