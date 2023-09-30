@@ -75,5 +75,7 @@ should show `7` instead of `0`. This is accomplished by firstly changing the `do
 20. C button added. It basically runs the function called by AddEventListener in `del()` until all the digits on the display are deleted. This is done with a for loop that runs for the length of the digits on the display.
 
 ### Memory function
-* In September 1965, CASIO releases the 14-A 001 calculator, the first desktop calculator with a memory function. *
+*In September 1965, CASIO releases the 14-A 001 calculator, the first desktop calculator with a memory function.*
+
+1. `memory` is a variable that stores a value and can be added to or subtracted from. It stores whatever is on the display by being assigned `display_value` when the `M+` or `M-` button is pressed. `MC` clear `memory` by setting it to `=0`, and `MR` shows it on the screen.
 
