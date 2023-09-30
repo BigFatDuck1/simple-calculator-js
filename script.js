@@ -508,6 +508,7 @@ cKeypress();
 
 //Memory functions
 let memory = 0;
+let memory_active = 0;
 
 let Mplus = () => {
     document.querySelector("#Mplus").addEventListener("click", () => {
@@ -518,6 +519,7 @@ let Mplus = () => {
 
         //Append display_value into memory
         memory += parseFloat(display_value);
+        memory_active = 1;
 
         console.log(memory);
 
@@ -534,6 +536,7 @@ let Msubtract = () => {
 
         //Append display_value into memory
         memory -= parseFloat(display_value);
+        memory_active = 1;
 
         console.log(memory);
 
@@ -555,7 +558,7 @@ Mrecall();
 let Mclear = () => {
     document.getElementById("MC").addEventListener("click", () => {
         memory = 0;
-        console.log(memory);
+        memory_active = 0;
     })
 }
 Mclear();
@@ -578,4 +581,20 @@ let inputLogEmptyPadding = () => {
     window.addEventListener("keypress", inputLogHeight);
 }
 inputLogEmptyPadding();
+
+let memoryChangeColor = () => {
+    document.addEventListener("click", () => {
+        if (memory_active == 1) {
+            document.querySelectorAll(".memory").forEach((element) => {
+                element.classList.add("memory_activated");
+            })
+        }
+        else {
+            document.querySelectorAll(".memory").forEach((element) => {
+                element.classList.remove("memory_activated");
+            })
+        }
+    })
+}
+memoryChangeColor();
 

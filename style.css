@@ -15,7 +15,7 @@ body {
     flex-direction: column;
     align-items: center;
     border-radius: 5%;
-    background-color: #18212A;
+    background-color: #2a373d;
 }
 
 .display {
@@ -51,11 +51,47 @@ body {
     padding: 20px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    background-color: #18212A;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+
 }
 
 .button {
     font-size: 20px;
+    padding: 10px;
     margin: 3px;
+    background-color: #18212A;
+    border-style: none;
+    border-radius: 5px;
+    color: #F8F8F8;
+}
+.button:hover {
+    background-color: #22313f;
+}
+.button:active {
+    background-color: #f8f8f858;
+    color: #18212A;
+}
+
+#equal {
+    background-color: orange;
+    color: #18212A;
+    border-radius: 50px;
+}
+#equal:hover {
+    background-color: rgb(185, 120, 0);
+}
+#equal:active {
+    background-color: rgb(255, 179, 0);
+}
+
+#AC {
+    color: orangered;
+}
+
+.memory_activated {
+    background-color: #22313f;
 }
 
 .operator {
