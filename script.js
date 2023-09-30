@@ -106,6 +106,7 @@ let logClear = () => {
 //On start, set display text to = 0
 let switchOn = () => {
     document.querySelector(".display_text").textContent = 0;
+    number_string = "";
     logClear();
 }
 switchOn();
@@ -484,3 +485,59 @@ let C = () => {
     })
 }
 C();
+
+//Memory functions
+let memory = 0;
+
+let Mplus = () => {
+    document.querySelector("#Mplus").addEventListener("click", () => {
+
+        if (number_string == "" || operators_array.includes(number_string.slice(-1))) {
+            return "Block input" //If no input or if previous input is an operator, don't allow access to memory
+        }
+
+        //Append display_value into memory
+        memory += parseFloat(display_value);
+
+        console.log(memory);
+
+    })
+}
+Mplus();
+
+let Msubtract = () => {
+    document.querySelector("#Msubtract").addEventListener("click", () => {
+
+        if (number_string == "" || operators_array.includes(number_string.slice(-1))) {
+            return "Block input" //If no input or if previous input is an operator, don't allow access to memory
+        }
+
+        //Append display_value into memory
+        memory -= parseFloat(display_value);
+
+        console.log(memory);
+
+    })
+}
+Msubtract();
+
+let Mrecall = () => {
+    document.querySelector("#MR").addEventListener("click", () => {
+        
+        document.querySelector(".display_text").textContent = memory;
+        
+        number_string = display_value = memory.toString();
+        
+    })
+}
+Mrecall();
+
+let Mclear = () => {
+    document.getElementById("MC").addEventListener("click", () => {
+        memory = 0;
+        console.log(memory);
+    })
+}
+Mclear();
+
+
