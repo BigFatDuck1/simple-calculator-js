@@ -1,10 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Gabarito&display=swap');
+
 body {
     display: flex;
     justify-content: center;
+    font-family: "Gabarito", sans-serif;
 }
 
 .calc_container {
-    width: 375px;
+    width: auto;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,23 +23,28 @@ body {
 }
 
 .input_log {
-    padding: 5px;
-    font-size: 10px;
+    padding: 6px;
+    font-size: 16px;
+}
+.input_log_empty {
+    padding: 16px;
 }
 
 .display_text {
-    font-size: 20px;
+    font-size: 32px;
     padding: 20px;
     padding-top: 5px;
 }
 
 /* Container for all the buttons */
 .buttons {
+    padding: 20px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
 }
 
 .button {
+    font-size: 20px;
     margin: 3px;
 }
 

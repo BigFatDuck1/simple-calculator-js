@@ -540,4 +540,19 @@ let Mclear = () => {
 }
 Mclear();
 
+//CSS and appearance related code
+let inputLogEmptyPadding = () => {
+    let input_log_ref = document.querySelector(".input_log");
+    document.querySelector(".input_log").classList.add("input_log_empty"); //Add this class to give it that padding
+
+    window.addEventListener("click", () => {
+        if (input_log_ref.textContent == "") {
+            document.querySelector(".input_log").classList.add("input_log_empty");
+        }
+        else {
+            document.querySelector(".input_log").classList.remove("input_log_empty");
+        }
+    })
+}
+inputLogEmptyPadding();
 
