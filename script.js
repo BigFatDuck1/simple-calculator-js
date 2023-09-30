@@ -255,6 +255,7 @@ let doOperation = () => {
             checkAndCallOperate();
             //2. Set display to equal answer after pressing another operator
             display_value = document.querySelector(".display_text").textContent = number_string.toString();
+
             show_answer = 1; //This is an answer that is being shown, not something the user inputted
             after_pressed_equal = 0; //The user wants to continue operation with the answer, set switch to off
             //3. Append the operator into the string
@@ -275,6 +276,11 @@ let doOperation = () => {
                     number_string += "/";
                     logAppend("/");
                     break;   
+            }
+
+            if (number_string == "-") { //The first input is negative sign
+                show_answer = 0;
+                display_value += document.querySelector(".display_text").textContent += "-"
             }
             
         })
