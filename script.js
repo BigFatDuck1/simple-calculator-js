@@ -306,7 +306,7 @@ let pressEqualButton = ()  => {
         if (operators_array.includes(number_string.slice(-1))) {
             return "Block equal button as previous input was operator";
         }
-        document.querySelector(".display_text").textContent = checkAndCallOperate();
+        display_value = document.querySelector(".display_text").textContent = checkAndCallOperate();
         
         after_pressed_equal = 1; //Set this state so if the next button press is a number button, call AC() to clear everything
 
