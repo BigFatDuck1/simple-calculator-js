@@ -137,6 +137,10 @@ let buttonPressed = () => {
 
             } 
 
+            if (number_string.length >= 20) {
+                return "Block input to prevent overflow" 
+            } 
+
             //Clear everything if the previous button press was equal 
             if (after_pressed_equal == 1) {
                 after_pressed_equal = 0;
