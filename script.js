@@ -564,6 +564,7 @@ let Mrecall = () => {
         document.querySelector(".display_text").textContent = memory;
         
         number_string = input_log = display_value = memory.toString();
+        document.querySelector(".input_log").textContent = input_log; //Replaces whatever is in the input log at that time
         
     })
 }
