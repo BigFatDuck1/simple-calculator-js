@@ -491,6 +491,10 @@ let C = () => {
         for (let i = 0; i < run_del_n_times; i++) {
             deleteDigit();
         }
+
+        if (document.querySelector(".display_text").textContent == "-") {
+            document.querySelector(".display_text").textContent = "0";
+        }
     })
 }
 C();
