@@ -6,6 +6,9 @@ let input_log = "";
 //Did the user press equal 
 let after_pressed_equal = 0;
 
+//Digit limit determines how many digits the calculator can hold
+const digit_limit = 15;
+
 //Some arrays for comparison purposes
 let operators_array = ["+", "-", "*", "/"];
 let arabic_number_array = [];
@@ -137,7 +140,7 @@ let buttonPressed = () => {
 
             } 
 
-            if (number_string.length >= 20) {
+            if (number_string.length >= digit_limit) {
                 return "Block input to prevent overflow" 
             } 
 
