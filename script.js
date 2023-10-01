@@ -559,7 +559,7 @@ let Mrecall = () => {
         
         document.querySelector(".display_text").textContent = memory;
         
-        number_string = display_value = memory.toString();
+        number_string = input_log = display_value = memory.toString();
         
     })
 }
